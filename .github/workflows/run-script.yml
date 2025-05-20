@@ -1,16 +1,19 @@
-name: Executar script no Ubuntu 24.04
+name: Executar Script no Ubuntu 24.04
 
-on: push  # Aciona o workflow quando um push for feito no repositório
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   run-script:
-    runs-on: ubuntu-24.04  # Define o ambiente Ubuntu 24.04
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout do código
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Tornar script executável
-        run: chmod +x deploy_automatico/script.sh  # Caminho correto do script
+      - name: Permitir execução do script
+        run: chmod +x script.sh
 
-      - name: Executar script
-        run: ./deploy_automatico/script.sh  # Executa o script dentro de deploy_automatico 
+      - name: Executar o script
+        run: ./script.sh
